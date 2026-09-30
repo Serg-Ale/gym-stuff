@@ -1,0 +1,8 @@
+.env*
+.impeccable/questions/
+.impeccable/review/
+.vercel
+
+# Notas pessoais do projeto: ficam no disco, fora do repositório público
+PRODUCT.md
+docs/

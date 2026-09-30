@@ -1,0 +1,8 @@
+.impeccable
+docs
+DESIGN.md
+PRODUCT.md
+img/PROVENANCE.md
+.git
+.env.local
+.vercel

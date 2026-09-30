@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-30T20:35:20.275340+00:00",
+  "title": "Design System: Treino do dia",
+  "extensions": {
+    "colorMeta": {
+      "plate-red": {
+        "role": "primary",
+        "displayName": "Esmalte Vermelho (segunda)",
+        "canonical": "oklch(64% 0.208 22)",
+        "tonalRamp": [
+          "#410000",
+          "#690000",
+          "#920000",
+          "#bb0024",
+          "#e43745",
+          "#ff6167",
+          "#ff888a",
+          "#ffafae"
+        ]
+      },
+      "plate-blue": {
+        "role": "primary",
+        "displayName": "Esmalte Azul (terça)",
+        "canonical": "oklch(61% 0.183 264)",
+        "tonalRamp": [
+          "#0b0057",
+          "#00007b",
+          "#0b32a1",
+          "#2956c7",
+          "#497aee",
+          "#699fff",
+          "#8cc4ff",
+          "#b0ebff"
+        ]
+      },
+      "plate-yellow": {
+        "role": "primary",
+        "displayName": "Esmalte Amarelo (quarta)",
+        "canonical": "oklch(83% 0.158 89)",
+        "tonalRamp": [
+          "#230000",
+          "#431700",
+          "#633700",
+          "#855800",
+          "#a87a00",
+          "#cd9e00",
+          "#f3c331",
+          "#ffe861"
+        ]
+      },
+      "plate-green": {
+        "role": "primary",
+        "displayName": "Esmalte Verde (quinta)",
+        "canonical": "oklch(71% 0.167 150)",
+        "tonalRamp": [
+          "#001800",
+          "#003700",
+          "#005700",
+          "#007925",
+          "#009d48",
+          "#42c16a",
+          "#6ce78d",
+          "#93ffb2"
+        ]
+      },
+      "chalk": {
+        "role": "neutral",
+        "displayName": "Giz",
+        "canonical": "oklch(96% 0.007 107)",
+        "tonalRamp": [
+          "#0b0b08",
+          "#252522",
+          "#42423e",
+          "#61615d",
+          "#83837e",
+          "#a5a5a1",
+          "#c9c9c5",
+          "#efefea"
+        ]
+      },
+      "rubber": {
+        "role": "neutral",
+        "displayName": "Borracha",
+        "canonical": "#121212",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Giz Apagado",
+        "canonical": "oklch(72% 0.010 107)",
+        "tonalRamp": [
+          "#0c0b07",
+          "#252520",
+          "#42423c",
+          "#62625b",
+          "#83837c",
+          "#a5a59e",
+          "#cacac2",
+          "#efefe7"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Nome do exercício em caixa-alta."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Todo número lido ou editado."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Rótulos de bloco e nome do treino."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Cues e notas."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Tags, chips, tipo de série."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Todas as transições de estado e slides (.15 a .26s)."
+      },
+      {
+        "name": "seat",
+        "value": "scale .86 > 1.08 > 1, .26s",
+        "purpose": "Disco assentando ao marcar série."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "380px"
+      },
+      {
+        "name": "column-max",
+        "value": "560px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Disco de série",
+      "kind": "custom",
+      "refersTo": "disc-set",
+      "description": "Série pendente e feita, 56px.",
+      "html": "<button class=\"ds-disc\" aria-pressed=\"false\"><span>1</span></button> <button class=\"ds-disc ds-on\" aria-pressed=\"true\"><span>2</span></button>",
+      "css": ":host{--plate:#f0444f;--rubber-2:#1a1a1b;--rubber-3:#252527;--chalk:#f1f1ec;--on-plate:#141414;--muted:#a6a69f;--line:#36363a}.ds-disc{width:56px;height:56px;border-radius:50%;border:4px solid var(--plate);background:none;color:var(--chalk);font-family:'Big Shoulders Display','Arial Narrow',sans-serif;font-weight:800;font-size:26px;cursor:pointer;transition:background-color .15s cubic-bezier(.16,1,.3,1)}.ds-on{background:var(--plate);color:var(--on-plate)}.ds-disc:focus-visible{outline:3px solid var(--chalk);outline-offset:3px}"
+    },
+    {
+      "name": "Disco de dia",
+      "kind": "nav",
+      "refersTo": "day-disc",
+      "description": "Rack SEG a SEX, cor IWF por dia.",
+      "html": "<button class=\"ds-day\" style=\"--c:#4a7cf0\">TER</button> <button class=\"ds-day ds-sel\" style=\"--c:#f2c230\">QUA</button>",
+      "css": ":host{--plate:#f0444f;--rubber-2:#1a1a1b;--rubber-3:#252527;--chalk:#f1f1ec;--on-plate:#141414;--muted:#a6a69f;--line:#36363a}.ds-day{width:56px;height:56px;border-radius:50%;border:4px solid var(--c);background:none;color:var(--chalk);font-family:'Big Shoulders Display','Arial Narrow',sans-serif;font-weight:800;font-size:19px;letter-spacing:.04em;cursor:pointer}.ds-sel{background:var(--c);color:var(--on-plate)}.ds-day:active{transform:scale(.94)}.ds-day:focus-visible{outline:3px solid var(--chalk);outline-offset:3px}"
+    },
+    {
+      "name": "Régua proporcional",
+      "kind": "custom",
+      "description": "Segmentos com largura = séries; triângulo de giz no exercício atual.",
+      "html": "<ol class=\"ds-rail\"><li style=\"flex:4 1 0\"><i class=\"ds-f\" style=\"width:100%\"></i></li><li style=\"flex:4 1 0\" class=\"ds-cur\"><i class=\"ds-f\" style=\"width:50%\"></i></li><li style=\"flex:3 1 0\"><i class=\"ds-f\" style=\"width:0\"></i></li></ol>",
+      "css": ":host{--plate:#f0444f;--rubber-2:#1a1a1b;--rubber-3:#252527;--chalk:#f1f1ec;--on-plate:#141414;--muted:#a6a69f;--line:#36363a}.ds-rail{list-style:none;display:flex;gap:4px;margin:0;padding:0}.ds-rail li{position:relative;height:10px;margin-top:10px;border-radius:3px;background:var(--rubber-3);overflow:visible}.ds-f{display:block;height:100%;background:var(--plate);border-radius:3px}.ds-cur::before{content:'';position:absolute;left:50%;top:-9px;margin-left:-6px;border:6px solid transparent;border-top-color:var(--chalk);border-bottom:0}"
+    },
+    {
+      "name": "Stepper de carga",
+      "kind": "input",
+      "refersTo": "control",
+      "description": "Controle de 52px em borracha 3.",
+      "html": "<div class=\"ds-step\"><button>-</button><input value=\"40\" aria-label=\"Carga\"><button>+</button></div>",
+      "css": ":host{--plate:#f0444f;--rubber-2:#1a1a1b;--rubber-3:#252527;--chalk:#f1f1ec;--on-plate:#141414;--muted:#a6a69f;--line:#36363a}.ds-step{display:inline-flex;align-items:center;background:var(--rubber-3);border-radius:14px}.ds-step button{width:52px;height:52px;border:0;background:none;color:var(--chalk);font-size:24px;border-radius:14px;cursor:pointer}.ds-step button:active{background:var(--line)}.ds-step input{width:88px;height:52px;border:0;background:none;color:var(--chalk);text-align:center;font-family:'Big Shoulders Display','Arial Narrow',sans-serif;font-weight:800;font-size:32px}.ds-step :focus-visible{outline:3px solid var(--chalk);outline-offset:3px}"
+    },
+    {
+      "name": "Painel de ilustração",
+      "kind": "card",
+      "refersTo": "figure-panel",
+      "description": "Placa de giz com multiply e badge de esmalte.",
+      "html": "<figure class=\"ds-fig\"><span class=\"ds-badge\">1</span></figure>",
+      "css": ":host{--plate:#f0444f;--rubber-2:#1a1a1b;--rubber-3:#252527;--chalk:#f1f1ec;--on-plate:#141414;--muted:#a6a69f;--line:#36363a}.ds-fig{position:relative;margin:0;width:140px;aspect-ratio:1;background:#ecebe4;border-radius:20px}.ds-badge{position:absolute;left:8px;top:8px;width:34px;height:34px;border-radius:50%;background:var(--plate);color:var(--on-plate);display:grid;place-items:center;font-family:'Big Shoulders Display','Arial Narrow',sans-serif;font-weight:800;font-size:20px}"
+    },
+    {
+      "name": "Botão Próximo (pronto)",
+      "kind": "button",
+      "refersTo": "dock-button-ready",
+      "description": "Doca: vira esmalte quando o exercício está completo.",
+      "html": "<button class=\"ds-next\">PRÓXIMO</button> <button class=\"ds-next ds-rdy\">PRÓXIMO</button>",
+      "css": ":host{--plate:#f0444f;--rubber-2:#1a1a1b;--rubber-3:#252527;--chalk:#f1f1ec;--on-plate:#141414;--muted:#a6a69f;--line:#36363a}.ds-next{height:56px;padding:0 16px;border:0;border-radius:16px;background:var(--rubber-3);color:var(--chalk);font-family:'Big Shoulders Display','Arial Narrow',sans-serif;font-weight:800;font-size:22px;letter-spacing:.06em;cursor:pointer;transition:background-color .2s cubic-bezier(.16,1,.3,1)}.ds-rdy{background:var(--plate);color:var(--on-plate)}.ds-next:focus-visible{outline:3px solid var(--chalk);outline-offset:3px}"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "description": "Pílula de técnica em borracha 3.",
+      "html": "<span class=\"ds-tag\">Drop set</span>",
+      "css": ":host{--plate:#f0444f;--rubber-2:#1a1a1b;--rubber-3:#252527;--chalk:#f1f1ec;--on-plate:#141414;--muted:#a6a69f;--line:#36363a}.ds-tag{display:inline-block;padding:5px 12px;border-radius:14px;background:var(--rubber-3);color:var(--chalk);font:500 15px/1.25 Barlow,system-ui,sans-serif}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Anilhas Calibradas",
+    "overview": "O mundo é um piso de borracha preta fosca com giz por cima. Cada dia da semana é uma cor de anilha IWF (vermelho, azul, amarelo, verde, branco) e cada série é um disco esmaltado plano que se \"carrega\" ao tocar: anel de 4px vazado, preenchido quando feita. Numerais condensados estampados (Big Shoulders Display) carregam carga, reps, contagem e tempo; Barlow fala o resto. Ilustrações ficam em painéis de giz com multiply, como placa esmaltada.\n\nA densidade é de operação: uma coluna de até 560px, alvos de 44 a 56px, um toque por série. Não há gradiente, brilho, neon nem sombra. Profundidade vem só de camadas tonais de borracha e de um filete de 1px na doca.",
+    "keyCharacteristics": [
+      "Uma única cor de dia ativa por vez (`--plate` no body por `data-day`); as demais só aparecem no rack de dias.",
+      "Discos planos: anel 4px, filete interno a 38% da cor, preenchimento sólido quando ativo.",
+      "Numerais condensados em peso 800 para tudo que é número; rótulos em caixa-alta condensada com tracking 0.08em.",
+      "Sem sombras, sem gradientes; superfícies em 3 tons de borracha.",
+      "Um único marcador de passo atual na régua (triângulo de giz)."
+    ],
+    "rules": [
+      {
+        "name": "The Code-Only Rule",
+        "body": "Cor de esmalte significa dia ou estado da série. Nunca é usada como decoração de superfície.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink-On-Enamel Rule",
+        "body": "Sobre qualquer esmalte preenchido, o texto é Tinta de Anilha (#141414), nunca giz.",
+        "section": "colors"
+      },
+      {
+        "name": "The Stamped Numeral Rule",
+        "body": "Todo número que o usuário lê ou edita usa Big Shoulders 800 com `tabular-nums`; prosa nunca usa a face condensada.",
+        "section": "typography"
+      },
+      {
+        "name": "The Proportional Rail Rule",
+        "body": "A régua tem um segmento por exercício com `flex-grow` igual ao número de séries; largura é informação.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Enamel Rule",
+        "body": "Nada brilha, projeta sombra ou degrada; profundidade é troca de tom.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do usar o esmalte do dia (`--plate`) só para dia e estado de série.",
+      "Do escrever texto sobre esmalte em #141414.",
+      "Do manter alvos de toque de 44px ou mais (discos 56px, controles 52px).",
+      "Do usar Big Shoulders 800 com tabular-nums para qualquer número.",
+      "Do separar superfícies por tom de borracha, não por sombra."
+    ],
+    "donts": [
+      "Don't usar gradiente, brilho, neon ou `box-shadow`.",
+      "Don't usar cor de esmalte como fundo decorativo ou borda de cartão.",
+      "Don't empilhar cartões com barra de progresso genérica; a régua proporcional e os discos são o indicador.",
+      "Don't usar a face condensada em parágrafos."
+    ]
+  }
+}
