@@ -46,7 +46,7 @@ O que guiou as decisões:
 | **Dias como anilhas** | Cada dia da semana é uma cor de anilha olímpica, e a régua no topo mostra o progresso do treino. |
 | **Resumo do treino** | Todos os exercícios do dia com quantas séries faltam. |
 | **Sem internet** | Abre e funciona offline, e sincroniza quando a conexão volta. Pode ser instalado na tela inicial. |
-| **Conta pessoal** | Login por link mágico ou senha, com cadastro fechado: só e-mails convidados entram. |
+| **Conta pessoal** | Entra com e-mail e senha. O link por e-mail serve para o primeiro acesso e para quem esqueceu a senha, com intervalo de 1 minuto entre pedidos. Cadastro fechado: só e-mails convidados entram. |
 
 ## Telas
 
@@ -60,8 +60,8 @@ O que guiou as decisões:
   <tr>
     <td align="center"><img src="screenshots/6-outro-dia.png" width="220" alt="Outro dia, com drop set"><br><sub>Outro dia, com drop set</sub></td>
     <td align="center"><img src="screenshots/7-conta.png" width="220" alt="Conta e sincronização"><br><sub>Conta e sincronização</sub></td>
-    <td align="center"><img src="screenshots/1-login.png" width="220" alt="Tela de entrada"><br><sub>Entrada</sub></td>
-    <td></td>
+    <td align="center"><img src="screenshots/1-login.png" width="220" alt="Tela de entrada, com senha como caminho principal"><br><sub>Entrada</sub></td>
+    <td align="center"><img src="screenshots/8-link-enviado.png" width="220" alt="Link enviado por e-mail"><br><sub>Primeiro acesso: link por e-mail</sub></td>
   </tr>
 </table>
 

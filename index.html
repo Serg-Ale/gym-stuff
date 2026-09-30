@@ -67,18 +67,41 @@
   .acct[data-s="pending"] i, .acct[data-s="syncing"] i, .acct[data-s="offline"] i { background: #f2c230; }
   .acct[data-s="error"] i { background: #f0444f; }
   .noauth .rack, .noauth .wname, .noauth .rail, .noauth .dock, .noauth #ovbtn, .noauth #acctbtn { display: none; }
-  .auth { max-width: 420px; margin: 36px auto 0; }
-  .auth h2 { margin: 0 0 10px; font-size: 40px; }
-  .auth p { margin: 0 0 18px; color: var(--muted); }
+  .noauth .top { display: none; }
+  .noauth main { padding-bottom: 24px; }
+  .auth { min-height: calc(100dvh - 28px); display: flex; flex-direction: column; justify-content: center; gap: 26px; max-width: 440px; margin: 0 auto; padding: 20px 0 8px; }
+  .brand { text-align: center; }
+  .brand svg { display: block; width: min(100%, 320px); height: auto; margin: 0 auto 18px; overflow: visible; }
+  .brand .pl { animation: load .5s var(--ease) both; animation-delay: calc(var(--i) * 50ms); transform-box: fill-box; transform-origin: center; }
+  @keyframes load { from { opacity: 0; transform: translateX(calc(var(--s) * 20px)); } }
+  .brand h1 { margin: 0; font: 900 clamp(46px, 15vw, 64px)/.92 var(--display); letter-spacing: .02em; text-transform: uppercase; }
+  .brand p { margin: 10px 0 0; color: var(--muted); font-size: 18px; }
+  .card { background: var(--rubber-2); border-radius: 20px; padding: 18px 16px 16px; }
+  .card h2 { margin: 0 0 14px; font: 800 28px/1 var(--display); letter-spacing: .06em; text-transform: uppercase; }
   .auth label { display: block; margin: 0 0 6px; font: 700 18px/1 var(--display); letter-spacing: .08em; text-transform: uppercase; }
-  .field { width: 100%; height: 56px; margin: 0 0 14px; padding: 0 16px; border: 0; border-radius: 14px; background: var(--rubber-3); font-size: 18px; }
+  .field { width: 100%; height: 56px; margin: 0 0 14px; padding: 0 16px; border: 2px solid transparent; border-radius: 14px; background: var(--rubber-3); font-size: 18px; }
+  .field:focus { outline: 0; border-color: var(--chalk); }
   .field::placeholder { color: var(--hint); opacity: 1; }
+  .pw { position: relative; }
+  .pw .field { padding-right: 60px; }
+  .pw button { position: absolute; right: 4px; top: 4px; width: 48px; height: 48px; border: 0; border-radius: 12px; background: none; display: grid; place-items: center; color: var(--muted); }
+  .pw button[aria-pressed="true"] { color: var(--chalk); }
   .btn { width: 100%; height: 60px; border: 0; border-radius: 16px; background: var(--plate); color: var(--on-plate); font: 800 26px/1 var(--display); letter-spacing: .06em; text-transform: uppercase; }
+  .btn:active { transform: scale(.985); }
   .btn:disabled { opacity: .5; }
-  .btn.ghost { background: var(--rubber-3); color: var(--chalk); }
-  .linkbtn { display: block; margin: 16px auto 0; padding: 10px 14px; border: 0; background: none; color: var(--chalk); text-decoration: underline; text-underline-offset: 4px; font-size: 17px; }
-  .msg { min-height: 1.4em; margin: 12px 0 0; font-size: 16px; color: var(--chalk); }
+  .btn.ghost { background: var(--rubber-3); color: var(--chalk); height: 54px; font-size: 22px; }
+  .or { display: flex; align-items: center; gap: 12px; margin: 20px 0 14px; color: var(--muted); font-size: 15px; }
+  .or::before, .or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .help { margin: 12px 0 0; color: var(--muted); font-size: 15px; text-align: center; }
+  .msg { min-height: 1.4em; margin: 12px 0 0; font-size: 16px; color: var(--chalk); text-align: center; }
   .msg.err { color: #ff8a93; }
+  .sent { text-align: center; }
+  .sent .seal { width: 72px; height: 72px; margin: 4px auto 14px; border-radius: 50%; background: var(--plate); color: var(--on-plate); display: grid; place-items: center; position: relative; }
+  .sent .seal::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; border: 2px solid var(--rim-ink); }
+  .sent .seal .ic { width: 34px; height: 34px; }
+  .sent p { margin: 0 0 10px; overflow-wrap: anywhere; }
+  .sent b { font-weight: 600; }
+  .sent .btn { margin-top: 8px; }
   #acct .row { margin: 0 0 18px; }
   #acct h3 { margin: 0 0 8px; font: 700 18px/1 var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
   #acct p { margin: 0 0 10px; overflow-wrap: anywhere; }
@@ -522,7 +545,10 @@ const ICON = {
   list: '<path d="M9 7h11M9 12h11M9 17h11M4.5 7h.01M4.5 12h.01M4.5 17h.01"/>',
   close: '<path d="M6 6l12 12M18 6L6 18"/>',
   pin: '<path d="M12 16v6M8.5 3h7l-1 6 3 3.5H6.5L9.5 9l-1-6z"/>',
-  reset: '<path d="M4 12a8 8 0 1 0 2.6-5.9M4 4v4.5h4.5"/>'
+  reset: '<path d="M4 12a8 8 0 1 0 2.6-5.9M4 4v4.5h4.5"/>',
+  eye: '<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>',
+  eyeoff: '<path d="M3 3l18 18M10.6 5.7A9.6 9.6 0 0 1 12 5.5C18 5.5 21.5 12 21.5 12a16 16 0 0 1-3 3.8M6.3 6.9A16 16 0 0 0 2.5 12S6 18.5 12 18.5a9.7 9.7 0 0 0 4-.9M9.9 9.9a3 3 0 0 0 4.2 4.2"/>',
+  mail: '<path d="M3.5 6.5h17v11h-17zM3.5 7l8.5 6.5L20.5 7"/>'
 };
 const icon = n => `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${ICON[n]}</svg>`;
 function el(tag, attrs = {}, ...kids) {
@@ -802,6 +828,7 @@ const SB_KEY = "sb_publishable_LzwKSUVcFFBRs6u42TknnA_qDKvBxkS"; // chave públi
 const sb = typeof supabase !== "undefined"
   ? supabase.createClient(SB_URL, SB_KEY, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } })
   : null;
+const arrivedByLink = /access_token=|type=(magiclink|recovery|signup)|[?&]code=/.test(location.hash + location.search);
 let session = null, syncErr = false, flushing = false, flushTimer = null, lastSync = 0, dirtySeq = 0;
 function uid() { return session?.user?.id ?? null; }
 const EX_NAME = Object.fromEntries(WORKOUTS.flatMap(w => w.ex.map(e => [e.id, e.n])));
@@ -1010,44 +1037,121 @@ function authError(err) {
   if (m.includes("invalid login") || m.includes("credentials")) return ERR.creds;
   return err?.message || "Não deu certo. Tente de novo.";
 }
+const LINK_COOLDOWN_S = 60; // intervalo entre pedidos de link, para não gastar o limite de e-mails do Supabase
+const lastEmailKey = "gym.lastEmail";
+const linkKey = email => `gym.linkAt.${email}`;
+const linkWait = email => Math.max(0, LINK_COOLDOWN_S - Math.floor((Date.now() - (+safe(() => localStorage.getItem(linkKey(email)), 0) || 0)) / 1000));
+
+// Barra carregada com anilhas IWF, desenhada em SVG: a marca do app.
+function barbell() {
+  const plates = [["#f1f1ec", 36], ["#3fbf68", 44], ["#f2c230", 52], ["#4a7cf0", 60], ["#f0444f", 68]], W = 320, H = 72;
+  let g = "";
+  plates.forEach(([c, h], i) => {
+    const x = 24 + i * 12, y = (H - h) / 2;
+    g += `<rect class="pl" style="--i:${i};--s:-1" x="${x}" y="${y}" width="10" height="${h}" rx="3" fill="${c}"/>`;
+    g += `<rect class="pl" style="--i:${i};--s:1" x="${W - x - 10}" y="${y}" width="10" height="${h}" rx="3" fill="${c}"/>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Barra carregada com anilhas"><rect x="4" y="${H / 2 - 2}" width="${W - 8}" height="4" rx="2" fill="#a6a69f"/><rect x="86" y="${H / 2 - 9}" width="6" height="18" rx="2" fill="#f1f1ec"/><rect x="${W - 92}" y="${H / 2 - 9}" width="6" height="18" rx="2" fill="#f1f1ec"/>${g}</svg>`;
+}
+
 function buildAuth() {
-  let mode = "link";
-  const msg = el("p", { class: "msg", role: "status" });
-  const mail = el("input", { class: "field", type: "email", id: "auth-mail", autocomplete: "email", inputmode: "email", placeholder: "voce@email.com", required: "" });
-  const pass = el("input", { class: "field", type: "password", id: "auth-pass", autocomplete: "current-password", placeholder: "Sua senha" });
-  const passWrap = el("div", {}, el("label", { for: "auth-pass" }, "Senha"), pass); passWrap.hidden = true;
-  const go = el("button", { class: "btn", type: "submit" }, "Enviar link");
-  const toggle = el("button", { class: "linkbtn", type: "button" }, "Entrar com senha");
-  const setMode = m => {
-    mode = m; passWrap.hidden = m === "link"; go.textContent = m === "link" ? "Enviar link" : "Entrar";
-    toggle.textContent = m === "link" ? "Entrar com senha" : "Prefiro receber um link"; msg.textContent = ""; msg.className = "msg";
-  };
-  toggle.addEventListener("click", () => setMode(mode === "link" ? "senha" : "link"));
-  const form = el("form", { novalidate: "" }, el("label", { for: "auth-mail" }, "E-mail"), mail, passWrap, go, msg, toggle);
-  form.addEventListener("submit", async ev => {
-    ev.preventDefault();
-    const email = mail.value.trim().toLowerCase();
-    if (!email) { msg.className = "msg err"; msg.textContent = "Digite o seu e-mail."; mail.focus(); return; }
-    if (!sb) { msg.className = "msg err"; msg.textContent = "Não consegui carregar o login. Recarregue a página."; return; }
-    go.disabled = true; msg.className = "msg"; msg.textContent = "Um momento…";
-    try {
-      if (mode === "link") {
-        const { error } = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin + location.pathname } });
-        if (error) throw error;
-        msg.textContent = `Link enviado para ${email}. Abra o e-mail neste aparelho e toque no link.`;
-      } else {
-        if (!pass.value) { msg.className = "msg err"; msg.textContent = "Digite a sua senha."; pass.focus(); return; }
+  const root = el("section", { class: "auth", "aria-label": "Entrar" },
+    el("div", { class: "brand", html: `${barbell()}<h1>Treino do dia</h1><p>Um exercício por vez. Sem perder nada.</p>` }));
+  const card = el("div", { class: "card" });
+  root.append(card);
+  let timer = null;
+
+  const showForm = (prefill = "") => {
+    clearInterval(timer);
+    const msg = el("p", { class: "msg", role: "status" });
+    const mail = el("input", { class: "field", type: "email", id: "auth-mail", name: "email", autocomplete: "username", inputmode: "email", enterkeyhint: "next", autocapitalize: "none", spellcheck: "false", placeholder: "voce@email.com", value: prefill || safe(() => localStorage.getItem(lastEmailKey), "") || "" });
+    const pass = el("input", { class: "field", type: "password", id: "auth-pass", name: "password", autocomplete: "current-password", enterkeyhint: "go", placeholder: "Sua senha" });
+    const eye = el("button", { type: "button", "aria-label": "Mostrar senha", "aria-pressed": "false", html: icon("eye") });
+    eye.addEventListener("click", () => { const show = pass.type === "password"; pass.type = show ? "text" : "password"; eye.setAttribute("aria-pressed", String(show)); eye.setAttribute("aria-label", show ? "Ocultar senha" : "Mostrar senha"); eye.innerHTML = icon(show ? "eyeoff" : "eye"); });
+    const go = el("button", { class: "btn", type: "submit" }, "Entrar");
+    const link = el("button", { class: "btn ghost", type: "button", id: "auth-link" }, "Receber link por e-mail");
+    const fail = t => { msg.className = "msg err"; msg.textContent = t; };
+    const readMail = () => {
+      const email = mail.value.trim().toLowerCase();
+      if (!email || !email.includes("@")) { fail("Digite o seu e-mail."); mail.focus(); return null; }
+      if (!sb) { fail("Não consegui carregar o login. Recarregue a página."); return null; }
+      return email;
+    };
+    const card_ = el("form", { novalidate: "" },
+      el("h2", {}, "Entrar"),
+      el("label", { for: "auth-mail" }, "E-mail"), mail,
+      el("label", { for: "auth-pass" }, "Senha"), el("div", { class: "pw" }, pass, eye),
+      go, msg,
+      el("div", { class: "or" }, "primeiro acesso ou esqueci a senha"),
+      link,
+      el("p", { class: "help" }, "Enviamos um link de entrada para o e-mail convidado. Depois você define a sua senha."));
+    card.replaceChildren(card_);
+
+    // Entrar com senha (caminho principal)
+    card_.addEventListener("submit", async ev => {
+      ev.preventDefault();
+      const email = readMail(); if (!email) return;
+      if (!pass.value) { fail("Digite a sua senha, ou peça um link por e-mail."); pass.focus(); return; }
+      go.disabled = true; msg.className = "msg"; msg.textContent = "Entrando…";
+      try {
         const { error } = await sb.auth.signInWithPassword({ email, password: pass.value });
         if (error) throw error;
-        msg.textContent = "Entrando…";
-      }
-    } catch (err) { msg.className = "msg err"; msg.textContent = authError(err); }
-    finally { go.disabled = false; }
-  });
-  return el("section", { class: "auth", "aria-label": "Entrar" },
-    el("h2", {}, "Entrar"),
-    el("p", {}, "Só e-mails convidados entram. Você recebe um link por e-mail ou usa a sua senha."),
-    form);
+        safe(() => localStorage.setItem(lastEmailKey, email));
+      } catch (err) { fail(authError(err)); go.disabled = false; pass.focus(); }
+    });
+
+    // Link por e-mail (secundário), com intervalo entre envios
+    const tickLink = () => {
+      const email = mail.value.trim().toLowerCase(), w = email ? linkWait(email) : 0;
+      link.disabled = w > 0;
+      link.textContent = w > 0 ? `Link enviado · novo em ${fmtClock(w)}` : "Receber link por e-mail";
+    };
+    mail.addEventListener("input", tickLink); tickLink();
+    timer = setInterval(() => { if (!document.contains(card_)) clearInterval(timer); else tickLink(); }, 1000);
+    link.addEventListener("click", async () => {
+      const email = readMail(); if (!email) return;
+      if (linkWait(email) > 0) { tickLink(); return; }
+      link.disabled = true; msg.className = "msg"; msg.textContent = "Enviando o link…";
+      try {
+        const { error } = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin + location.pathname } });
+        if (error) throw error;
+        safe(() => { localStorage.setItem(linkKey(email), String(Date.now())); localStorage.setItem(lastEmailKey, email); });
+        showSent(email);
+      } catch (err) { fail(authError(err)); tickLink(); }
+    });
+  };
+
+  const showSent = email => {
+    clearInterval(timer);
+    const again = el("button", { class: "btn ghost", type: "button" }, "");
+    const back = el("button", { class: "btn ghost", type: "button" }, "Usar senha ou outro e-mail");
+    const hint = el("p", { class: "help" });
+    const paint = () => { const w = linkWait(email); again.disabled = w > 0; again.textContent = w > 0 ? `Reenviar em ${fmtClock(w)}` : "Reenviar o link"; };
+    back.addEventListener("click", () => showForm(email));
+    again.addEventListener("click", async () => {
+      if (linkWait(email) > 0) return;
+      again.disabled = true;
+      try {
+        const { error } = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin + location.pathname } });
+        if (error) throw error;
+        safe(() => localStorage.setItem(linkKey(email), String(Date.now()))); hint.textContent = "Enviamos de novo.";
+      } catch (err) { hint.textContent = authError(err); }
+      paint();
+    });
+    const box = el("div", { class: "sent", role: "status" },
+      el("div", { class: "seal", html: icon("mail") }),
+      el("h2", {}, "Link enviado"),
+      el("p", { html: "Enviamos para <b></b>. Abra o e-mail <b>neste aparelho</b> e toque no link para entrar." }),
+      el("p", { class: "help" }, "Não chegou? Olhe o spam. Na próxima vez você já entra com a senha."),
+      again, back, hint);
+    box.querySelector("b").textContent = email;
+    card.replaceChildren(box);
+    paint();
+    timer = setInterval(() => { if (!document.contains(box)) clearInterval(timer); else paint(); }, 1000);
+  };
+
+  showForm();
+  return root;
 }
 
 // ---- Conta ----
@@ -1060,14 +1164,15 @@ function renderImport() {
     const r = importLegacy(who); e.currentTarget.textContent = `Importado: ${r.days} treino${r.days === 1 ? "" : "s"}, ${r.notes} nota${r.notes === 1 ? "" : "s"}`; e.currentTarget.disabled = true; render();
   } }, `Importar “${who}” (${n} treino${n === 1 ? "" : "s"})`)));
 }
-function openAcct() {
-  $("#acct-mail").textContent = session?.user?.email || ""; $("#acct-pw-msg").textContent = ""; $("#acct-pw-in").value = "";
+function openAcct(nudgePassword = false) {
+  $("#acct-mail").textContent = session?.user?.email || ""; $("#acct-pw-msg").className = "msg"; $("#acct-pw-msg").textContent = nudgePassword ? "Defina uma senha para entrar mais rápido da próxima vez, sem precisar do link." : ""; $("#acct-pw-in").value = "";
   renderImport(); paintAcct();
   if (typeof acct.showModal === "function") acct.showModal(); else acct.setAttribute("open", "");
+  if (nudgePassword) $("#acct-pw-in").focus();
 }
 function closeAcct() { if (typeof acct.close === "function") acct.close(); else acct.removeAttribute("open"); }
 $("#acct-x").innerHTML = icon("close");
-$("#acctbtn").addEventListener("click", openAcct);
+$("#acctbtn").addEventListener("click", () => openAcct());
 $("#acct-x").addEventListener("click", closeAcct);
 acct.addEventListener("click", e => { if (e.target === acct) closeAcct(); });
 $("#acct-now").addEventListener("click", async () => { $("#acct-sync").textContent = "Sincronizando…"; await syncAll(); paintAcct(); });
@@ -1086,6 +1191,12 @@ function onUserChange() {
   state.who = uid() || "anon"; state.idx = -1;
   render();
   if (uid()) setTimeout(syncAll, 0); // fora do callback de auth, para não travar o cliente
+  // Entrou pelo link: convida, uma vez por conta, a criar a senha para as próximas vezes.
+  const seen = `gym.pwNudge.${uid()}`;
+  if (uid() && arrivedByLink && !safe(() => localStorage.getItem(seen), null)) {
+    safe(() => localStorage.setItem(seen, "1"));
+    setTimeout(() => openAcct(true), 400);
+  }
 }
 async function initAuth() {
   if (!sb) { render(); return; }
