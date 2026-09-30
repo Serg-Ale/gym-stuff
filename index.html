@@ -1203,6 +1203,14 @@ async function initAuth() {
   sb.auth.onAuthStateChange((_ev, s) => { const before = uid(); session = s; if (uid() !== before) onUserChange(); else paintAcct(); });
   const { data: d } = await sb.auth.getSession();
   session = d.session; onUserChange();
+  if (!session) await autoLoginFromHash();
+}
+// Link de convite: #entrar=<e-mail>:<senha>. O fragmento não vai ao servidor e é apagado da barra logo em seguida.
+async function autoLoginFromHash() {
+  const m = /^#entrar=([^:]+):(.+)$/.exec(location.hash);
+  if (!m) return;
+  history.replaceState(null, "", location.pathname + location.search);
+  try { await sb.auth.signInWithPassword({ email: decodeURIComponent(m[1]), password: decodeURIComponent(m[2]) }); } catch {}
 }
 addEventListener("online", () => { paintAcct(); syncAll(); });
 addEventListener("offline", paintAcct);
